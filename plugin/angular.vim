@@ -155,7 +155,12 @@ endfunction
 function! s:Alternate(cmd) abort
   let l:currentpath = expand('%')
   let l:possiblepathsforalternatefile = []
-  for possiblenewpath in [s:SubStr(l:currentpath, ".js", "_test.js"), s:SubStr(l:currentpath, "_test.js", ".js")]
+  for possiblenewpath in [
+        \ s:SubStr(l:currentpath, ".js", "_test.js"), 
+        \ s:SubStr(l:currentpath, "_test.js", ".js"),
+        \ s:SubStr(l:currentpath, ".js", ".spec.js"),
+        \ s:SubStr(l:currentpath, ".spec.js", ".js"),
+        \ ]
     if possiblenewpath != l:currentpath
       let l:possiblepathsforalternatefile = [possiblenewpath]
     endif
